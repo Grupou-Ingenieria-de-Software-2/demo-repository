@@ -12,3 +12,4 @@ class registro(models.Model):
     Accion = models.CharField(max_length=100)
     id_usuario = models.CharField(max_length=100)
     fecha = models.DateTimeField(auto_now=True)
+
