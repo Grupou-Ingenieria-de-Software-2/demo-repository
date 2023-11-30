@@ -79,11 +79,15 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "cideretest",
         "USER": "root",
-        "PASSWORD": "",
-        "HOST": "localhost",
+        #"PASSWORD": '',
+        "HOST": "127.0.0.1",
         "PORT": "3306",
+        'OPTIONS': {
+            'ssl': {'enabled': False},
+        },
     }
 }
+
 
 
 # Password validation
