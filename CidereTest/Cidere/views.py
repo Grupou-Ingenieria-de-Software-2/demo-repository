@@ -6,7 +6,7 @@ from datetime import datetime
 def index(request):
     return render(request,'Cidere/index.html')
 
-def dashboard(request):
+def dash(request):
     return render(request,"Cidere/Dashboard.html")
 
 def registro_usuario(request):
