@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboards</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .nav-link:hover {
+        background-color: #4E4E4E !important; /* Este es un color gris claro. */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row flex-column-reverse flex-lg-row">
+        <div class="col-10 col-lg-4 bg-dark order-2 order-lg-1">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-white disabled" href="#">Dashboards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" onclick="cambiarURL(1)" href="#">Porcentaje registrados en la región</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" onclick="cambiarURL(2)" href="#">Páginas más visitadas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" onclick="cambiarURL(3)" href="#">Proveedores más visitados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'index'%}">Volver al inicio</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="col-12 col-lg-8 order-1 order-lg-2">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe id="modificable" title="MuestraPorcenYRegistro" width="850" height="540" src="https://app.powerbi.com/reportEmbed?reportId=5d895443-37a9-4cd7-9b44-abdab01d42e2&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function cambiarURL(numero) {
+          var ifr = document.getElementById("modificable");
+          if(numero==1){
+            ifr.setAttribute("src", "https://app.powerbi.com/reportEmbed?reportId=5d895443-37a9-4cd7-9b44-abdab01d42e2&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8");  
+          }
+          if(numero==2){
+            ifr.setAttribute("src", "https://app.powerbi.com/reportEmbed?reportId=ac2d08f0-620b-4d53-9c59-ffcf9bd9b621&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8");  
+          }
+          if(numero==3){
+            ifr.setAttribute("src", "https://app.powerbi.com/reportEmbed?reportId=c2ba3b1e-b8dc-47e2-be10-c7e678f0f1f4&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8");  
+          }
+    }
+</script>
+
+</body>
+</html>
