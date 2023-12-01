@@ -217,3 +217,4 @@ class TablaUsuario(models.Model):
     class Meta:
         managed = False
         db_table = 'tabla_usuario'
+
