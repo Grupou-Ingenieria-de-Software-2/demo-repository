@@ -1,0 +1,27 @@
+/* En tu archivo CSS */
+.breadcrumbs ul {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+}
+
+.breadcrumbs li {
+    display: inline-block; /* Hace que los elementos se muestren en línea */
+    margin-right: 18px; /* Espacio entre elementos del breadcrumb */
+}
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+
+.breadcrumbs a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+  }

@@ -213,7 +213,9 @@ class TablaRTransacciones(models.Model):
 class TablaUsuario(models.Model):
     id_usuario = models.IntegerField(primary_key=True)
     nombre_empresa = models.CharField(max_length=100)
+    region = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'tabla_usuario'
+

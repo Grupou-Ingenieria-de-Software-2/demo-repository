@@ -16,11 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Cidere.views import index, dashboard
+from Cidere.views import index, dashboard, registro_usuario, dashboard, indexmain,provedores, perfil_proveedor, lista_transacciones, detalle_transaccion, nueva_transaccion
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',index,name='index'),
+    path('',indexmain,name='indexmain'),
     path('dashboard/',dashboard,name='dashboard'),
+    path('registro/',registro_usuario,name='registro'),
+    path('dashboard/',dashboard,name='dashboard'),
+    path('index/',index,name='index'),
+    path('provedores_index/',provedores,name='provedores'),
+    path('perfil_proveedor/<id_usuario>/perfil',perfil_proveedor,name='perfil_proveedor'),
+    path('transacciones/', lista_transacciones, name='lista_transacciones'),
+    path('transacciones/<int:id_transaccion>/', detalle_transaccion, name='detalle_transaccion'),
+    path('transacciones/nueva/', nueva_transaccion, name='nueva_transaccion'),
 
 ]

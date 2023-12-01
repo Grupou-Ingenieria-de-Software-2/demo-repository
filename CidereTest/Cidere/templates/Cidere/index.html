@@ -69,7 +69,7 @@
         </div>
         <div class="col-12 col-lg-8 order-1 order-lg-2">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe id="modificable" title="MuestraPorcenYRegistro" width="850" height="540" src="https://app.powerbi.com/reportEmbed?reportId=1be245c8-1547-467c-8eb2-87161efb8df7&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8" frameborder="0" allowFullScreen="true"></iframe>
+                <iframe id="modificable" title="MuestraPorcenYRegistro" width="850" height="540" src="https://app.powerbi.com/reportEmbed?reportId=db0c3f45-6cb0-4fc3-8614-35b1c22f8d2e&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8" frameborder="0" allowFullScreen="true"></iframe>
               </div>
         </div>
     </div>
@@ -136,9 +136,10 @@
     <h2>Objetos existentes:</h2>
     <ul>
         {% for objeto in objetos %}
-            <li>ID: {{ objeto.id_usuario }} - Empresa: {{ objeto.nombre_empresa }}</li>
+            <li>ID: {{ objeto.id_usuario }} - Empresa: {{ objeto.nombre_empresa }} - Region: {{objeto.region}}</li>
         {% endfor %}
     </ul>
+    
 </body>
 
 </body>

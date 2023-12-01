@@ -1,0 +1,16 @@
+<!-- En templates/transacciones/lista_transacciones.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Transacciones</title>
+</head>
+<body>
+    <h1>Lista de Transacciones</h1>
+    <ul>
+        {% for transaccion in transacciones %}
+            <li><a href="{% url 'detalle_transaccion' transaccion.id_transaccion %}">{{ transaccion.accion_realizada }} - {{ transaccion.fecha_registro }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
