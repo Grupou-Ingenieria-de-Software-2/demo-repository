@@ -70,27 +70,6 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class CidereRegistro(models.Model):
-    accion = models.CharField(db_column='Accion', max_length=100)  # Field name made lowercase.
-    id_usuario = models.CharField(max_length=100)
-    fecha = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'cidere_registro'
-
-
-class CidereUsuario(models.Model):
-    run = models.CharField(primary_key=True, max_length=50)
-    correo = models.CharField(max_length=100)
-    nombre = models.CharField(max_length=100)
-    tipo = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'cidere_usuario'
-
-
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -146,15 +125,6 @@ class Relleno(models.Model):
         db_table = 'relleno'
 
 
-class TablaRCrud(models.Model):
-    id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
-    id_usuario = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='id_usuario')
-
-    class Meta:
-        managed = False
-        db_table = 'tabla r_crud'
-
-
 class TablaAcciones(models.Model):
     id_accion = models.IntegerField(primary_key=True)
     detalle_accion = models.CharField(max_length=100)
@@ -166,8 +136,8 @@ class TablaAcciones(models.Model):
 
 class TablaPagRevisado(models.Model):
     id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
-    pagina_ant = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='pagina_ant')
-    pagina_visit = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='pagina_visit', related_name='tablapagrevisado_pagina_visit_set')
+    pagina_ant = models.ForeignKey('TablaPaginas', models.DO_NOTHING, db_column='pagina_ant')
+    pagina_visit = models.ForeignKey('TablaPaginas', models.DO_NOTHING, db_column='pagina_visit', related_name='tablapagrevisado_pagina_visit_set')
     boton_contacto = models.IntegerField()
 
     class Meta:
@@ -184,6 +154,17 @@ class TablaPaginas(models.Model):
         db_table = 'tabla_paginas'
 
 
+class TablaProvRevisado(models.Model):
+    id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
+    pagina_ant = models.IntegerField()
+    pagina_visit = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='pagina_visit')
+    boton_contacto = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_prov_revisado'
+
+
 class TablaRBusquedas(models.Model):
     id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
     terminos_busqueda = models.CharField(max_length=100)
@@ -197,6 +178,15 @@ class TablaRBusquedas(models.Model):
     class Meta:
         managed = False
         db_table = 'tabla_r_busquedas'
+
+
+class TablaRCrud(models.Model):
+    id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
+    id_usuario = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='id_usuario')
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_r_crud'
 
 
 class TablaRTransacciones(models.Model):
@@ -218,4 +208,3 @@ class TablaUsuario(models.Model):
     class Meta:
         managed = False
         db_table = 'tabla_usuario'
-

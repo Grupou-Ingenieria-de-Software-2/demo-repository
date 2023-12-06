@@ -149,7 +149,7 @@
           <div class="col-sm-8">
             <<div class="list-group">
                 {% for usuario in datos_usuarios %}
-                <a href="{% url 'perfil_proveedor' usuario.pk %}" class="list-group-item list-group-item-action">
+                <a href="{% url 'perfil_proveedor' idBuscado=usuario.pk id=1 %}" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ usuario.nombre_empresa }}</h5>
                         <small>3 days ago</small>
