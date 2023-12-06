@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Index</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<h1>Pagina de inicio</h1>
+<a href="registro" class="btn btn-primary">Registro</a>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<button onclick="abrirLink()">Abrir Power BI</button>
+
+<script>
+    function abrirLink() {
+        // Cambia la URL según tu configuración
+        var url = "https://app.powerbi.com/reportEmbed?reportId=ff5d9b1b-4206-4ac1-884f-6430c970c2b8&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8";
+        
+        // Abre la URL en una nueva pestaña
+        window.open(url, '_blank');
+    }
+</script>
+
+
+<script>
+    function establecerConexion() {
+        // Realiza una petición AJAX para ejecutar la conexión en el servidor
+        fetch('/establecer_conexion/')  // La URL '/establecer_conexion/' debe estar definida en tus URLs de Django
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);  // Puedes manejar la respuesta según tus necesidades
+            })
+            .catch(error => {
+                console.error('Error al establecer la conexión:', error);
+            });
+    }
+</script>
+
+<div class="container-fluid">
+    <div class="row flex-column-reverse flex-lg-row">
+        <div class="col-10 col-lg-4 bg-dark order-2 order-lg-1">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-white disabled" href="#">Dashboards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" onclick="cambiarURL(1)" href="#">Porcentaje registrados en la región</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" onclick="cambiarURL(2)" href="#">Páginas más visitadas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" onclick="cambiarURL(3)" href="#">Proveedores más visitados</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="col-12 col-lg-8 order-1 order-lg-2">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe id="modificable" title="MuestraPorcenYRegistro" width="850" height="540" src="https://app.powerbi.com/reportEmbed?reportId=db0c3f45-6cb0-4fc3-8614-35b1c22f8d2e&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8" frameborder="0" allowFullScreen="true"></iframe>
+              </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function cambiarURL(numero) {
+          var ifr = document.getElementById("modificable");
+          if(numero==1){
+            ifr.setAttribute("src", "https://app.powerbi.com/reportEmbed?reportId=0fba1159-78fc-4075-a093-f42c46889cd9&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8");  
+          }
+          if(numero==2){
+            ifr.setAttribute("src", "https://app.powerbi.com/reportEmbed?reportId=0fba1159-78fc-4075-a093-f42c46889cd9&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8");  
+          }
+          if(numero==3){
+            ifr.setAttribute("src", "https://app.powerbi.com/reportEmbed?reportId=0fba1159-78fc-4075-a093-f42c46889cd9&autoAuth=true&ctid=a5e40a5a-392c-4f9b-8c0d-4d5db657eec8");  
+          }
+    }
+</script>
+
+<style>
+    .nav-link:hover {
+        background-color: #4E4E4E !important; /* Este es un color gris claro. */
+    }
+</style>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        margin: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+    <!-- Formulario para agregar datos -->
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <!-- El id_usuario puede ser omitido si es autoincremental en la base de datos -->
+        <label for="id_usuario">ID Usuario:</label>
+        <input type="number" name="id_usuario" required>
+        <br>
+        <label for="nombre_empresa">Nombre Empresa:</label>
+        <input type="text" name="nombre_empresa" required>
+        <br>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <!-- Lista de objetos existentes -->
+    <h2>Objetos existentes:</h2>
+    <ul>
+        {% for objeto in objetos %}
+            <li>ID: {{ objeto.id_usuario }} - Empresa: {{ objeto.nombre_empresa }} - Region: {{objeto.region}}</li>
+        {% endfor %}
+    </ul>
+    
+</body>
+
+</body>
+
+</html>
