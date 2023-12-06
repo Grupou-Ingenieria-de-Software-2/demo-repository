@@ -1,0 +1,46 @@
+.navbar {
+    background-color: #66ccff; /* Color celeste para el fondo */
+    font-family: Arial, sans-serif; /* Fuente sin serifas */
+  }
+
+  .navbar-brand {
+    color: white; /* Color blanco para el logo */
+    font-weight: bold; /* Fuente en negrita */
+    font-size: 24px; /* Tamaño de fuente grande */
+    margin-left: 20px; /* Margen izquierdo para separar del borde */
+  }
+
+  .navbar-toggler {
+    border: none; /* Sin borde para el botón de colapso */
+  }
+
+  .navbar-nav {
+    margin-right: 20px; /* Margen derecho para separar del borde */
+  }
+
+  .nav-link {
+    color: white; /* Color blanco para los enlaces */
+    margin: 10px; /* Margen para separar los enlaces */
+  }
+
+  .nav-link:hover {
+    color: #3399ff; /* Color azul claro para los enlaces al pasar el ratón */
+  }
+
+  .dropdown-menu {
+    background-color: #66ccff; /* Mismo color que el nav para el menú desplegable */
+  }
+
+  .dropdown-item {
+    color: white; /* Color blanco para los ítems del menú desplegable */
+  }
+
+  .dropdown-item:hover {
+    color: #3399ff; /* Color azul claro para los ítems del menú desplegable al pasar el ratón */
+  }
+
+  .nav-icon {
+    width: 20px; /* Ancho fijo para los iconos */
+    height: 20px; /* Alto fijo para los iconos */
+    margin-right: 5px; /* Margen derecho para separar los iconos de los textos */
+  }
