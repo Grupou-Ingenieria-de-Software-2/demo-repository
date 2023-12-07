@@ -8,6 +8,5 @@ powerbiclient
 pyodbc
 pymysql
 django
--- Rama UsandoDB --
 
 Se logro establecer la conexion a base de Datos y generar todos los modelos relacionados a las tablas, para su posterior insersion de datos
