@@ -71,7 +71,6 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Datoscidereprov(models.Model):
-    id = models.IntegerField(primary_key=True)
     nombre_proveedor = models.CharField(db_column='Nombre_Proveedor', max_length=66, blank=True, null=True)  # Field name made lowercase.
     rut_proveedor = models.CharField(db_column='Rut_proveedor', max_length=13, blank=True, null=True)  # Field name made lowercase.
     direccion = models.CharField(db_column='Direccion', max_length=81, blank=True, null=True)  # Field name made lowercase.
@@ -193,7 +192,7 @@ class TablaPaginas(models.Model):
 class TablaProvRevisado(models.Model):
     id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
     pagina_ant = models.IntegerField()
-    pagina_visit = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='pagina_visit')
+    pagina_visit = models.ForeignKey(Datoscidereprov, models.DO_NOTHING, db_column='pagina_visit')
     boton_contacto = models.IntegerField()
 
     class Meta:
@@ -228,7 +227,7 @@ class TablaRCrud(models.Model):
 class TablaRTransacciones(models.Model):
     id_transaccion = models.IntegerField(primary_key=True)
     accion_realizada = models.ForeignKey(TablaAcciones, models.DO_NOTHING, db_column='accion_realizada')
-    id_usuario = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='id_usuario')
+    id_usuario = models.ForeignKey(Datoscidereprov, models.DO_NOTHING, db_column='id_usuario')
     fecha_registro = models.DateTimeField()
 
     class Meta:
