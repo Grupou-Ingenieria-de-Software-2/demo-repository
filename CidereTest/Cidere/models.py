@@ -70,6 +70,23 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Datoscidereprov(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre_proveedor = models.CharField(db_column='Nombre_Proveedor', max_length=66, blank=True, null=True)  # Field name made lowercase.
+    rut_proveedor = models.CharField(db_column='Rut_proveedor', max_length=13, blank=True, null=True)  # Field name made lowercase.
+    direccion = models.CharField(db_column='Direccion', max_length=81, blank=True, null=True)  # Field name made lowercase.
+    mail = models.CharField(db_column='Mail', max_length=40, blank=True, null=True)  # Field name made lowercase.
+    contacto = models.CharField(db_column='Contacto', max_length=75, blank=True, null=True)  # Field name made lowercase.
+    telefono_contacto = models.CharField(db_column='Telefono_Contacto', max_length=18, blank=True, null=True)  # Field name made lowercase.
+    categoria = models.CharField(db_column='Categoria', max_length=37, blank=True, null=True)  # Field name made lowercase.
+    comuna = models.CharField(db_column='Comuna', max_length=19, blank=True, null=True)  # Field name made lowercase.
+    fecha_creacion = models.CharField(db_column='Fecha_Creacion', max_length=41, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'datoscidereprov'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -113,6 +130,25 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class Proveedorescsv(models.Model):
+    col_1 = models.TextField(db_column='COL 1', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    col_2 = models.CharField(db_column='COL 2', max_length=157, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+    col_3 = models.CharField(db_column='COL 3', max_length=139, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
+
+    class Meta:
+        managed = False
+        db_table = 'proveedorescsv'
+
+
+class Regioneschile(models.Model):
+    numeroregion = models.IntegerField(db_column='NumeroRegion', primary_key=True)  # Field name made lowercase.
+    nombreregion = models.CharField(db_column='NombreRegion', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'regioneschile'
 
 
 class Relleno(models.Model):
