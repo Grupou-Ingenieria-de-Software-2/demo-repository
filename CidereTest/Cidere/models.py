@@ -70,6 +70,22 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Datoscidereprov(models.Model):
+    nombre_proveedor = models.CharField(db_column='Nombre_Proveedor', max_length=66, blank=True, null=True)  # Field name made lowercase.
+    rut_proveedor = models.CharField(db_column='Rut_proveedor', max_length=13, blank=True, null=True)  # Field name made lowercase.  
+    direccion = models.CharField(db_column='Direccion', max_length=81, blank=True, null=True)  # Field name made lowercase.
+    mail = models.CharField(db_column='Mail', max_length=40, blank=True, null=True)  # Field name made lowercase.
+    contacto = models.CharField(db_column='Contacto', max_length=75, blank=True, null=True)  # Field name made lowercase.
+    telefono_contacto = models.CharField(db_column='Telefono_Contacto', max_length=18, blank=True, null=True)  # Field name made lowercase.
+    categoria = models.CharField(db_column='Categoria', max_length=37, blank=True, null=True)  # Field name made lowercase.
+    comuna = models.CharField(db_column='Comuna', max_length=19, blank=True, null=True)  # Field name made lowercase.
+    fecha_creacion = models.CharField(db_column='Fecha_Creacion', max_length=41, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'datoscidereprov'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -134,6 +150,16 @@ class TablaAcciones(models.Model):
         db_table = 'tabla_acciones'
 
 
+class TablaComunas(models.Model):
+    idcomuna = models.IntegerField(db_column='idComuna', primary_key=True)  # Field name made lowercase.
+    idregion = models.ForeignKey('TablaRegiones', models.DO_NOTHING, db_column='idRegion', blank=True, null=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=255)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_comunas'
+
+
 class TablaPagRevisado(models.Model):
     id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
     pagina_ant = models.ForeignKey('TablaPaginas', models.DO_NOTHING, db_column='pagina_ant')
@@ -157,7 +183,7 @@ class TablaPaginas(models.Model):
 class TablaProvRevisado(models.Model):
     id_transaccion = models.ForeignKey('TablaRTransacciones', models.DO_NOTHING, db_column='id_transaccion')
     pagina_ant = models.IntegerField()
-    pagina_visit = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='pagina_visit')
+    pagina_visit = models.ForeignKey(Datoscidereprov, models.DO_NOTHING, db_column='pagina_visit')
     boton_contacto = models.IntegerField()
 
     class Meta:
@@ -192,12 +218,39 @@ class TablaRCrud(models.Model):
 class TablaRTransacciones(models.Model):
     id_transaccion = models.IntegerField(primary_key=True)
     accion_realizada = models.ForeignKey(TablaAcciones, models.DO_NOTHING, db_column='accion_realizada')
-    id_usuario = models.ForeignKey('TablaUsuario', models.DO_NOTHING, db_column='id_usuario')
+    id_usuario = models.ForeignKey(Datoscidereprov, models.DO_NOTHING, db_column='id_usuario')
     fecha_registro = models.DateTimeField()
 
     class Meta:
         managed = False
         db_table = 'tabla_r_transacciones'
+
+
+class TablaRegiones(models.Model):
+    idregion = models.IntegerField(db_column='IDregion', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=255)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_regiones'
+
+
+class TablaRubros(models.Model):
+    idrubros = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_rubros'
+
+
+class TablaTam(models.Model):
+    idtabla_tam = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_tam'
 
 
 class TablaUsuario(models.Model):
@@ -208,3 +261,11 @@ class TablaUsuario(models.Model):
     class Meta:
         managed = False
         db_table = 'tabla_usuario'
+
+class TablaCategoria(models.Model):
+    idcategoria = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_categoria'
