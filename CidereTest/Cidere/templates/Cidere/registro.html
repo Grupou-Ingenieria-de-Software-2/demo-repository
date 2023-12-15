@@ -8,6 +8,14 @@
     <title>Registro</title>
 </head>
 <body>
+    {% if messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>   
+    {% endif %}
     <div class="container">
         <h2>Registro de Usuario</h2>
         <form class="form-control" method="post" action="{% url 'registro' %}">
@@ -21,11 +29,27 @@
             <label class="form-label" for="nombre">Nombre:</label>
             <input class="form-control" type="text" name="nombre" required><br>
 
-            <label for="tipo_usuario">Tipo de Usuario:</label>
-            <select class="form-select" name="tipo_usuario" required>
-                <option value="1">Tipo 1</option>
-                <option value="2">Tipo 2</option>
-                <!-- Agrega más opciones según sea necesario -->
+            <label class="form-label" for="dir">Direccion:</label>
+            <input class="form-control" type="text" name="dir" required><br>
+
+            <label class="form-label" for="nombreCont">Nombre del Contacto:</label>
+            <input class="form-control" type="text" name="nombreCont" required><br>
+
+            <label class="form-label" for="Contact">Numero contacto:</label>
+            <input class="form-control" type="text" name="Contact" required><br>
+
+            <label for="categoria">Categoria:</label>
+            <select class="form-select" name="categoria" required>
+                {% for categoria in categorias %}
+                    <option value="{{categoria.nombre}}">{{categoria.nombre}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="categoria">Comuna:</label>
+            <select class="form-select" name="comuna" required>
+                {% for comuna in comunas %}
+                    <option value="{{comuna.nombre}}">{{comuna.nombre}}</option>
+                {% endfor %}
             </select><br>
 
             <button class="btn btn-primary" type="submit">Registrar</button>

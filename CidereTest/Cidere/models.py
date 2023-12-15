@@ -72,7 +72,7 @@ class AuthUserUserPermissions(models.Model):
 
 class Datoscidereprov(models.Model):
     nombre_proveedor = models.CharField(db_column='Nombre_Proveedor', max_length=66, blank=True, null=True)  # Field name made lowercase.
-    rut_proveedor = models.CharField(db_column='Rut_proveedor', max_length=13, blank=True, null=True)  # Field name made lowercase.
+    rut_proveedor = models.CharField(db_column='Rut_proveedor', max_length=13, blank=True, null=True)  # Field name made lowercase.  
     direccion = models.CharField(db_column='Direccion', max_length=81, blank=True, null=True)  # Field name made lowercase.
     mail = models.CharField(db_column='Mail', max_length=40, blank=True, null=True)  # Field name made lowercase.
     contacto = models.CharField(db_column='Contacto', max_length=75, blank=True, null=True)  # Field name made lowercase.
@@ -131,25 +131,6 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class Proveedorescsv(models.Model):
-    col_1 = models.TextField(db_column='COL 1', blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    col_2 = models.CharField(db_column='COL 2', max_length=157, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    col_3 = models.CharField(db_column='COL 3', max_length=139, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-
-    class Meta:
-        managed = False
-        db_table = 'proveedorescsv'
-
-
-class Regioneschile(models.Model):
-    numeroregion = models.IntegerField(db_column='NumeroRegion', primary_key=True)  # Field name made lowercase.
-    nombreregion = models.CharField(db_column='NombreRegion', max_length=50)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'regioneschile'
-
-
 class Relleno(models.Model):
     id_usuario = models.IntegerField(db_column='Id_usuario')  # Field name made lowercase.
     region = models.CharField(max_length=50)
@@ -167,6 +148,16 @@ class TablaAcciones(models.Model):
     class Meta:
         managed = False
         db_table = 'tabla_acciones'
+
+
+class TablaComunas(models.Model):
+    idcomuna = models.IntegerField(db_column='idComuna', primary_key=True)  # Field name made lowercase.
+    idregion = models.ForeignKey('TablaRegiones', models.DO_NOTHING, db_column='idRegion', blank=True, null=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=255)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_comunas'
 
 
 class TablaPagRevisado(models.Model):
@@ -235,6 +226,33 @@ class TablaRTransacciones(models.Model):
         db_table = 'tabla_r_transacciones'
 
 
+class TablaRegiones(models.Model):
+    idregion = models.IntegerField(db_column='IDregion', primary_key=True)  # Field name made lowercase.
+    nombre = models.CharField(db_column='Nombre', max_length=255)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_regiones'
+
+
+class TablaRubros(models.Model):
+    idrubros = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_rubros'
+
+
+class TablaTam(models.Model):
+    idtabla_tam = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_tam'
+
+
 class TablaUsuario(models.Model):
     id_usuario = models.IntegerField(primary_key=True)
     nombre_empresa = models.CharField(max_length=100)
@@ -243,3 +261,11 @@ class TablaUsuario(models.Model):
     class Meta:
         managed = False
         db_table = 'tabla_usuario'
+
+class TablaCategoria(models.Model):
+    idcategoria = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tabla_categoria'
